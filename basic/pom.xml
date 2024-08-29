@@ -26,9 +26,9 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.5.3</spring-boot.version>
-    <spring-cloud.version>2020.0.3</spring-cloud.version>
-    <spring-cloud-huawei.version>1.7.0-2020.0.x</spring-cloud-huawei.version>
+    <spring-boot.version>2.7.18</spring-boot.version>
+    <spring-cloud.version>2021.0.9</spring-cloud.version>
+    <spring-cloud-huawei.version>1.11.9-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencyManagement>
@@ -82,7 +82,7 @@
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>2.1.6.RELEASE</version>
+          <version>${spring-boot.version}</version>
           <executions>
             <execution>
               <goals>

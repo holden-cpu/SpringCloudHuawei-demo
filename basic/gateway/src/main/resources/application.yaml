@@ -24,7 +24,5 @@ spring:
       routes:
         - id: consumer
           uri: lb://basic-consumer
-          filters:
-            - name: governance
           predicates:
             - Path=/**
