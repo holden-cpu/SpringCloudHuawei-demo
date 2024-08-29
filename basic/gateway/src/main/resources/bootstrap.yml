@@ -20,27 +20,28 @@ spring:
     name: basic-gateway
   cloud:
     servicecomb:
+      service:
+        application: ${CAS_APPLICATION_NAME:basic-application}
+        name: ${spring.application.name}
+        version: ${CAS_INSTANCE_VERSION:0.0.1}
+        environment: development
       discovery:
-        appName: basic-application
-        serviceName: ${spring.application.name}
-        watch: false
-        # address: https://cse.cn-south-1.myhuaweicloud.com
-        address: http://127.0.0.1:30100
-        version: 0.0.1
-        healthCheckInterval: 30
+        watch: true
+        address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
+        healthCheckInterval: 15
+        # 拉取实例的轮询时间，单位毫秒
+        pollInterval: 15000
+        # 优雅停机设置。优雅停机后，先从注册中心注销自己。这个时间表示注销自己后等待的时间，这个时间后才退出。
+        waitTimeForShutDownInMillis: 15000
       config:
-        # serverAddr: https://cse.cn-south-1.myhuaweicloud.com
-        serverType: config-center
-        serverAddr:  http://127.0.0.1:30113
-        fileSource: gateway.yaml
+        serverType: kie
+        serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
+        fileSource: consumer.yaml
 
-      # Configure AK/SK credentials if needed. Default not enabled.
       credentials:
-        enabled: false
-        accessKey: your ak
-        secretKey: your sk
-        akskCustomCipher: default
-        project: cn-south-1
+        account:
+          name: ${CSE_V2_ACCOUNT_NAME}
+          password: ${CSE_V2_ACCOUNT_PASSWORD}
 
 ## rate limiting configuration
 servicecomb:
