@@ -23,6 +23,6 @@ spring:
     gateway:
       routes:
         - id: consumer
-          uri: lb://basic-consumer
+          uri: lb://basic-nacos-consumer
           predicates:
             - Path=/**
