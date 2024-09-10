@@ -17,15 +17,25 @@
 
 package com.huaweicloud.samples;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProviderController {
+  @Value("${spring.cloud.nacos.discovery.metadata.region}")
+  private String region;
+
+  @Value("${spring.cloud.nacos.discovery.metadata.zone}")
+  private String zone;
+
+  @Value("${server.port}")
+  private int port;
+
   // a very simple service to echo the request parameter
   @GetMapping("/sayHello")
   public String sayHello(@RequestParam("name") String name) {
-    return "Hello " + name;
+    return "Hello " + name + ", current region: " + region + ", zone: " + zone + ", port: " + port;
   }
 }
